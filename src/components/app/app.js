@@ -29,12 +29,15 @@ class App extends Component {
   }
 
   addEmployee = (name, salary) => {
-    const elem = this.state.data.length;
-    const newEmployee = {name: name, salary: salary, increase: false, like: false, id: elem + 1}
-    this.setState(({data}) => ({
-      data: data.concat(newEmployee)
-    }))
-  }
+    if (name.length >= 2 && salary) {
+        const elem = this.state.data.length;
+        const newEmployee = {name: name, salary: salary, increase: false, like: false, id: elem + 1}
+        this.setState(({data}) => ({
+          data: data.concat(newEmployee)
+        }))
+        document.querySelectorAll('.add-form input').forEach(item => item.value = "");
+      }
+    }
 
   onToggle = (id, toggle) => {
     this.setState(({data}) => ({
